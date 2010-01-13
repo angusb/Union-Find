@@ -1,5 +1,5 @@
-A simple implementation of the Disjoint Data Structure that is has interesting 
-characteristics as seen here: http://en.wikipedia.org/wiki/Disjoint-set_data_structure
+A simple implementation of the Disjoint Data Structure (Union Find) that is has 
+interesting characteristics as seen here: http://en.wikipedia.org/wiki/Disjoint-set_data_structure
 
 From this point on?
 
