@@ -1,6 +1,6 @@
 #include "DisjointSet.h"
 
-DisjointSet::DisjointSet() 
+DisjointSet::DisjointSet()
             :numElts(0), numSets(0) {}
 
 DisjointSet::DisjointSet(const DisjointSet &d) {
@@ -37,7 +37,7 @@ int DisjointSet::Find(int elt) {
 
     Dnode* root = nodes[elt];
 
-    while (root->parent != NULL) 
+    while (root->parent != NULL)
 	root = root->parent;
 
     Dnode* setIter = nodes[elt];
@@ -52,14 +52,14 @@ int DisjointSet::Find(int elt) {
 
 void DisjointSet::Union(int set1, int set2) {
     assert(set1 < numElts && set2 < numElts);
-    
+
     Dnode* set1_rep = nodes[Find(set1)];
     Dnode* set2_rep = nodes[Find(set2)];
 
-    if (set1_rep == set2_rep) 
+    if (set1_rep == set2_rep)
 	return;
 
-    if (set1_rep->rank < set2_rep->rank) 
+    if (set1_rep->rank < set2_rep->rank)
 	set1_rep->parent = set2_rep;
     else if (set1_rep->rank > set2_rep->rank)
 	set2_rep->parent = set1_rep;
@@ -67,7 +67,7 @@ void DisjointSet::Union(int set1, int set2) {
 	set2_rep->parent = set1_rep; // arbitrary, set1_rep->parent = set2->rep
 	set1_rep->rank += 1;
     }
-    
+
     --numSets;
 }
 
@@ -82,7 +82,7 @@ int DisjointSet::NumSets() const {
 DisjointSet::~DisjointSet() {
     for (int i=0; i<numElts; i++)
 	delete nodes[i];
-    
+
     nodes.clear();
 }
 
@@ -91,10 +91,10 @@ void DisjointSet::copyAll(const DisjointSet &d) {
     this->numSets = d.numSets;
 
     nodes.resize(numElts);
-    for (int i=0; i<numElts; i++) 
+    for (int i=0; i<numElts; i++)
 	nodes[i] = new Dnode(*d.nodes[i]);
 
-    for (int i=0; i<numElts; i++) 
+    for (int i=0; i<numElts; i++)
 	if (d.nodes[i]->parent != NULL)
 	    nodes[i]->parent = nodes[d.nodes[i]->parent->index];
 }
