@@ -14,14 +14,14 @@ class DisjointSet {
     int Find(int element);
     int NumElements() const;
     int NumSets() const;
-    
+
  private:
     void copyAll(const DisjointSet &d);
 
     struct Dnode {
 	int index;      // index of the elment the node represents
 	int rank;
-	Dnode* parent; 
+	Dnode* parent;
 
 	Dnode() {
 	    parent = NULL;
